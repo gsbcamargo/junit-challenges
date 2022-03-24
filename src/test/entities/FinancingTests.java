@@ -12,15 +12,15 @@ public class FinancingTests {
 
 	@Test
 	public void constructorShouldCreateNewObjectWhenDataValid() {
-		Double totalAmount = 1000.0;
+		Double totalAmount = 10000.0;
 		Double income = 5000.0;
 		Integer months = 24;
 
 		Financing financing = new Financing(totalAmount, income, months);
 
-		assertEquals(1000.0, financing.getTotalAmount());
-		assertEquals(5000.0, financing.getIncome());
-		assertEquals(24, financing.getMonths());
+		assertEquals(totalAmount, financing.getTotalAmount());
+		assertEquals(income, financing.getIncome());
+		assertEquals(months, financing.getMonths());
 	}
 
 	@Test
@@ -33,8 +33,8 @@ public class FinancingTests {
 	}
 
 	@Test
-	public void totalAmountShouldUpdateWhenSetTotalAmountDataValid() {
-		Double totalAmount = 1000.0;
+	public void setTotalAmountShouldUpdateTotalAmountWhenDataValid() {
+		Double totalAmount = 10000.0;
 		Double income = 5000.0;
 		Integer months = 24;
 		Double updatedTotalAmount = 1200.0;
@@ -47,8 +47,8 @@ public class FinancingTests {
 	}
 
 	@Test
-	public void totalAmountShouldThrowExceptionWhenSetTotalAmountDataInvalid() {
-		Double totalAmount = 1000.0;
+	public void setTotalAmountShouldThrowExceptionWhenDataInvalid() {
+		Double totalAmount = 10000.0;
 		Double income = 5000.0;
 		Integer months = 24;
 		Double updatedTotalAmount = 120000.0;
@@ -56,6 +56,60 @@ public class FinancingTests {
 		assertThrows(IllegalArgumentException.class, () -> {
 			Financing financing = new Financing(totalAmount, income, months);
 			financing.setTotalAmount(updatedTotalAmount);
+		});
+	}
+
+	@Test
+	public void setIncomeShouldUpdateIncomeWhenDataValid() {
+		Double totalAmount = 10000.0;
+		Double income = 5000.0;
+		Integer months = 24;
+		Double updatedIncome = 12000.0;
+
+		Financing financing = new Financing(totalAmount, income, months);
+
+		financing.setIncome(updatedIncome);
+
+		assertTrue(financing.getIncome() == updatedIncome);
+	}
+
+	@Test
+	public void setIncomeShouldThrowExceptionWhenDataInvalid() {
+		Double totalAmount = 10000.0;
+		Double income = 5000.0;
+		Integer months = 24;
+		Double updatedIncome = 10.0;
+
+		assertThrows(IllegalArgumentException.class, () -> {
+			Financing financing = new Financing(totalAmount, income, months);
+			financing.setIncome(updatedIncome);
+		});
+	}
+	
+	@Test
+	public void setMonthsShouldUpdateMonthsWhenDataValid() {
+		Double totalAmount = 100000.0;
+		Double income = 5000.0;
+		Integer months = 48;
+		Integer updatedMonths = 36;
+
+		Financing financing = new Financing(totalAmount, income, months);
+
+		financing.setMonths(updatedMonths);
+
+		assertTrue(financing.getMonths() == updatedMonths);
+	}
+	
+	@Test
+	public void setMonthsShouldThrowExceptionWhenDataInvalid() {
+		Double totalAmount = 100000.0;
+		Double income = 5000.0;
+		Integer months = 48;
+		Integer updatedMonths = 12;
+		
+		assertThrows(IllegalArgumentException.class, () -> {
+			Financing financing = new Financing(totalAmount, income, months);
+			financing.setMonths(updatedMonths);
 		});
 	}
 }
