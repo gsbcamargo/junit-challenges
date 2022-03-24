@@ -112,4 +112,26 @@ public class FinancingTests {
 			financing.setMonths(updatedMonths);
 		});
 	}
+	
+	@Test
+	public void entryShouldCalculateCorrectly() {
+		Double totalAmount = 100000.0;
+		Double income = 5000.0;
+		Integer months = 48;
+		
+		Financing financing = new Financing(totalAmount, income, months);
+		
+		assertEquals(financing.entry(), (totalAmount * 0.2));
+	}
+	
+	@Test
+	public void quotaShouldCalculateCorrectly() {
+		Double totalAmount = 100000.0;
+		Double income = 5000.0;
+		Integer months = 48;
+		
+		Financing financing = new Financing(totalAmount, income, months);
+		
+		assertEquals(financing.quota(), (totalAmount - financing.entry()) / months);
+	}
 }
