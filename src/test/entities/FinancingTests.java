@@ -85,7 +85,7 @@ public class FinancingTests {
 			financing.setIncome(updatedIncome);
 		});
 	}
-	
+
 	@Test
 	public void setMonthsShouldUpdateMonthsWhenDataValid() {
 		Double totalAmount = 100000.0;
@@ -99,39 +99,39 @@ public class FinancingTests {
 
 		assertTrue(financing.getMonths() == updatedMonths);
 	}
-	
+
 	@Test
 	public void setMonthsShouldThrowExceptionWhenDataInvalid() {
 		Double totalAmount = 100000.0;
 		Double income = 5000.0;
 		Integer months = 48;
 		Integer updatedMonths = 12;
-		
+
 		assertThrows(IllegalArgumentException.class, () -> {
 			Financing financing = new Financing(totalAmount, income, months);
 			financing.setMonths(updatedMonths);
 		});
 	}
-	
+
 	@Test
 	public void entryShouldCalculateCorrectly() {
 		Double totalAmount = 100000.0;
 		Double income = 5000.0;
 		Integer months = 48;
-		
+
 		Financing financing = new Financing(totalAmount, income, months);
-		
+
 		assertEquals(financing.entry(), (totalAmount * 0.2));
 	}
-	
+
 	@Test
 	public void quotaShouldCalculateCorrectly() {
 		Double totalAmount = 100000.0;
 		Double income = 5000.0;
 		Integer months = 48;
-		
+
 		Financing financing = new Financing(totalAmount, income, months);
-		
+
 		assertEquals(financing.quota(), (totalAmount - financing.entry()) / months);
 	}
 }
