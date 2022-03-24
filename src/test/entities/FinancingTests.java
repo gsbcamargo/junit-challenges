@@ -16,6 +16,7 @@ public class FinancingTests {
 		Integer months = 24;
 		
 		Financing financing = new Financing(totalAmount, income, months);
+		
 		assertEquals(1000.0, financing.getTotalAmount());
 		assertEquals(5000.0, financing.getIncome());
 		assertEquals(24, financing.getMonths());
